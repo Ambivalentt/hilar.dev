@@ -10,8 +10,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 
-app.use('/users', router);
-
+app.use('/user', router);
+app.get('/', (req, res) => {    
+    res.send('Welcome to the API');
+})
 
 
 
