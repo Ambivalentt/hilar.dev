@@ -1,2 +1,27 @@
-GET https://hilar-backend.onrender.com
+POST http://localhost:3000/user/create
 Content-Type: application/json
+
+{
+   "first_name": "Johns",
+   "last_name": "Doesa",
+    "email": "qqw11e111s@tes.com",
+    "password": "password123",
+    "image_url": "https://example.com/image.jpg"
+}
+
+###
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "password123"
+}
+
+###
+GET http://localhost:3000/user/refreshToken
+Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ3NDU4ODExLCJleHAiOjE3NDgwNjM2MTF9.JMlAcoLV0KZ5etDcGeYjxn8GNtnMxkby-9NYSdKl_cc
+
+###
+GET http://localhost:3000/user/me
+Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6IkpvaG4iLCJsYXN0X25hbWUiOiJEb2UiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoibWVtYmVyIiwiaW1hZ2VfdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9pbWFnZS5qcGciLCJpYXQiOjE3NDc0NTg5NTQsImV4cCI6MTc0NzQ2MjU1NH0.1TB4jTvypE4mH1_cyvpaElSE3_tNxcDD0_j0viu5R5w

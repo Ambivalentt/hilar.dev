@@ -2,24 +2,26 @@ import express from 'express';
 import database from './src/config/server.js';
 import dotenv from 'dotenv';
 dotenv.config();
-import router from './src/routes/users.js';
-
+import userRoutes from './src/routes/users.js';
+import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 3000;
+import cookieParser from 'cookie-parser';
+
+app.use(cookieParser());
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 
 app.use(express.json());
 
+app.use('/user', userRoutes);
 
-app.use('/user', router);
-app.get('/', (req, res) => {    
-    res.send('Welcome to the API');
-})
-
-
-
-
-
-
+app.use((req, res) => {
+    res.status(404).json({ message: 'Route not found'});
+});
 
 
 database.query('SELECT 1 + 1 AS solution', (error, results) => {
