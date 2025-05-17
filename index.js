@@ -4,10 +4,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 import userRoutes from './src/routes/users.js';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import path from 'path';
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-import cookieParser from 'cookie-parser';
-
 app.use(cookieParser());
 
 app.use(cors({
@@ -23,6 +25,12 @@ app.use((req, res) => {
     res.status(404).json({ message: 'Route not found'});
 });
 
+
+app.use(express.static(path.join(path.resolve(), 'client', 'dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
 
 database.query('SELECT 1 + 1 AS solution', (error, results) => {
     if (error) {
