@@ -26,12 +26,6 @@ app.use((req, res) => {
 });
 
 
-app.use(express.static(path.join(path.resolve(), 'client', 'dist')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
-
 database.query('SELECT 1 + 1 AS solution', (error, results) => {
     if (error) {
         console.error('Database connection error:', error);
