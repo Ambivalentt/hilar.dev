@@ -1,10 +1,10 @@
 import heroMain from '../assets/heroMain.svg'
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 const JoinSection = () => {
     const [displayedText, setDisplayedText] = useState("");
     const text = `Bee part of a growing platform where teams manage their work smarter, not harder. Collaborate, plan, and track your progress like never before`
-    
+
     useEffect(() => {
         let index = 0;
         const interval = setInterval(() => {
@@ -25,9 +25,11 @@ const JoinSection = () => {
                 <p className="whitespace-pre-wrap text-lg h-22 text-gray-300 mb-6 typewriter ">
                     {displayedText}
                 </p>
-                <button className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-medium transition">
-                    Join us now
-                </button>
+                <Link to={"/register"}>
+                    <button className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-medium transition">
+                        Join us now
+                    </button>
+                </Link>
             </div>
 
             {/* Imagen grande */}
