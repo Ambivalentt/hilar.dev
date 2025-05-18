@@ -31,7 +31,8 @@ const loginUser = async (req, res) => {
             httpOnly: true,
             secure: true, //cambiar true en producction
             sameSite:"none", //si el front y el back son de diferentes dominios
-            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 días
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            domain:'hilar.dev' // 7 días
         })
         res.status(200).json({ message: 'Login successful', user: result });
     } catch (error) {
@@ -51,7 +52,8 @@ const refreshToken = async (req, res) => {
             httpOnly: true,
             secure: true, //cambiar true en producction
             sameSite:"none", //si el front y el back son de diferentes dominios
-            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 días
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+            domain:'hilar.dev' //cambiar por el dominio de tu app
         })
         res.status(200).json({ token: newToken });
     } catch (err) {
