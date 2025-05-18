@@ -29,8 +29,8 @@ const loginUser = async (req, res) => {
         const refreshToken = jwt.sign({id:result.id}, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.cookie('refresh_token', refreshToken, {
             httpOnly: true,
-            //scure:true //solo en produccion
-            //sameSite: 'strict' solo se puede acceder a la cookie en el mismo dominio
+            secure: true, //cambiar true en producction
+            sameSite:"none", //si el front y el back son de diferentes dominios
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 días
         })
         res.status(200).json({ message: 'Login successful', user: result });
@@ -49,6 +49,8 @@ const refreshToken = async (req, res) => {
         const newToken = jwt.sign(user , process.env.JWT_SECRET, { expiresIn: '1h' });
         res.cookie('access_token', newToken, {
             httpOnly: true,
+            secure: true, //cambiar true en producction
+            sameSite:"none", //si el front y el back son de diferentes dominios
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 días
         })
         res.status(200).json({ token: newToken });

@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/user/login
+POST https://hilar-backend.onrender.com/user/login
 Content-Type: application/json
 
 {
@@ -19,9 +19,20 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/user/refreshToken
-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ3NDU4ODExLCJleHAiOjE3NDgwNjM2MTF9.JMlAcoLV0KZ5etDcGeYjxn8GNtnMxkby-9NYSdKl_cc
+GET https://hilar-backend.onrender.com/user/refreshToken
+Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ3NTI1NjExLCJleHAiOjE3NDgxMzA0MTF9._9JSKdvEO_B7ClBmEymwiwFHZTdem4yD0HUkraW7LP8
+###
+GET https://hilar-backend.onrender.com/user/me
+Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6IkpvaG4iLCJsYXN0X25hbWUiOiJEb2UiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoibWVtYmVyIiwiaW1hZ2VfdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9pbWFnZS5qcGciLCJpYXQiOjE3NDc1MjU2NTEsImV4cCI6MTc0NzUyOTI1MX0.19fO-vgcUGHlb4Q3Cwi8csUfD19o55kqGezJ6SJ70SM
 
 ###
-GET http://localhost:3000/user/me
-Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6IkpvaG4iLCJsYXN0X25hbWUiOiJEb2UiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoibWVtYmVyIiwiaW1hZ2VfdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9pbWFnZS5qcGciLCJpYXQiOjE3NDc0NTg5NTQsImV4cCI6MTc0NzQ2MjU1NH0.1TB4jTvypE4mH1_cyvpaElSE3_tNxcDD0_j0viu5R5w
+POST https://hilar-backend.onrender.com/user/create
+Content-Type: application/json
+
+{
+   "first_name": "Johns",
+   "last_name": "Doesa",
+    "email": "testhttp@http.com",
+    "password": "password123",
+    "image_url": "https://example.com/image.jpg"
+}
