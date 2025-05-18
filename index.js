@@ -12,9 +12,10 @@ const app = express();
 
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://hilar.dev'],
+    origin:'https://hilar.dev',
     credentials: true
 }));
+
 const PORT = process.env.PORT || 3000;
 app.use(cookieParser());
 app.use(express.json());
