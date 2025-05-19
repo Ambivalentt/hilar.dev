@@ -34,13 +34,13 @@ const Login = () => {
         await getUser()
       }
 
-      setUser({
-        email: "",
-        password: "",
-      })
       navigate("/")
     } catch (error) {
       setError(error.message)
+       setUser({
+        email: "",
+        password: "",
+      })
     } finally {
       setLoading(false)
     }
@@ -76,7 +76,7 @@ const Login = () => {
             <li>Stay organized and productive</li>
           </ul>
         </section>
-        <section className={`bg-zinc-800 rounded-lg shadow-lg p-8 ${loading ? "opacity-50 pointer-events-none" : ""}`}>
+        <section className={`bg-zinc-900 rounded-lg shadow-lg p-8 ${loading ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-3xl font-bold text-white mb-6 text-center">Sign in</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -105,7 +105,7 @@ const Login = () => {
             {error && <p className="text-red-500 text-sm">{error}</p>}
             <button
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md font-medium transition-colors"
+              className="w-full h-10 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md font-medium transition-colors"
             >
               {loading ? "Loading..." : "Login"}
             </button>

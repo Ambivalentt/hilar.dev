@@ -1,11 +1,12 @@
 import { useState, useRef } from "react";
-import { createUser, loginUser, refreshToken, getUser } from "../api/users.jsx";
+import { createUser, loginUser, refreshToken } from "../api/users.jsx";
 import Footer from "../components/Footer.jsx";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from 'react-spinners';;  //react loader spinner library
-
+import { useStateContext } from "../context/authContext.jsx";
 const Register = () => {
+  const { getUser } = useStateContext()
   const [fileName, setFileName] = useState("No avatar selected");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -129,7 +130,7 @@ const Register = () => {
           <p className="inline bg-indigo-600 py-1 px-5 rounded-lg cursor-pointer hover:bg-indigo-700">Upload Avatar</p> <span>{fileName}</span>
         </button>
         {error && <p className="text-red-500 text-sm">{error}</p>}
-        <button type="submit" className="w-full flex items-center justify-center bg-indigo-600 cursor-pointer hover:bg-indigo-700 text-white py-2 rounded-md font-medium transition-colors">
+        <button type="submit" className="w-full h-10 flex items-center justify-center bg-indigo-600 cursor-pointer hover:bg-indigo-700 text-white py-2 rounded-md font-medium transition-colors">
           {loading ?  <PulseLoader  size={'10'} color="#fff" /> : "Register"}
         </button>
       </form>

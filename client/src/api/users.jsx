@@ -11,8 +11,8 @@ const createUser = async (formData) => {
         return response.data;
 
     } catch (error) {
-        const errorMessage = error.response?.data?.error;
-        throw new Error(errorMessage || 'an unknown error occurred while fetching data');
+        const errorMessage = error.response?.data;
+        throw new Error(errorMessage.message || 'an unknown error occurred while fetching data');
     }
 }
 
@@ -22,11 +22,11 @@ const loginUser = async (formData) => {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true
         });
-
+        console.log('response from loginUser', response);
         return response.data;
     } catch (error) {
-        const errorMessage = error?.response?.data?.error || ' an problem occurred while logging in';
-        throw new Error(errorMessage);
+        const errorMessage = error?.response?.data || ' an problem occurred while logging in';
+        throw new Error(errorMessage.message);
     }
 }
 
@@ -37,8 +37,8 @@ const refreshToken = async () => {
         });
         return response.data;
     } catch (error) {
-        const errorMessage = error?.response?.data?.error || 'an problem occurred while refreshing the token';
-        throw new Error(errorMessage);
+        const errorMessage = error?.response?.data || 'an problem occurred while refreshing the token';
+        throw new Error(errorMessage.message);
     }
 }
 
