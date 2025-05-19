@@ -13,10 +13,21 @@ const AuthProvider = ({ children }) => {
             });
             setUser(response.data);
         } catch (error) {
-            console.error('Error al obtener el usuario:', error);
+            console.error('Error getting the user :', error);
         }
     }
-
+    const logOut = async () => {
+    try {
+        const response = await axiosInstance.get('/user/logout', {
+            withCredentials: true
+        });
+        setUser(null);
+    
+    } catch (error) {
+        const errorMessage = error?.response?.data?.error || 'an problem occurred while logging out';
+        throw new Error(errorMessage);
+    }
+}
     useEffect(() => {
         const checkAuth = async () => {
             try {
@@ -38,10 +49,10 @@ const AuthProvider = ({ children }) => {
 
                         setUser(userResponse.data);
                     } catch (refreshError) {
-                        console.error('Error al refrescar token:', refreshError);
+                        console.error('Error refreshing the token:', refreshError);
                     }
                 } else {
-                    console.error('Error al obtener el usuario:', error);
+                    console.error('error getting the user data:', error);
                 }
             }
         };
@@ -52,7 +63,7 @@ const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ user, getUser }}>
+        <AuthContext.Provider value={{ user, getUser, logOut }}>
             {children}
         </AuthContext.Provider>
     );

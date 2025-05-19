@@ -33,7 +33,7 @@ const loginUser = async (req, res) => {
             sameSite:"none", //si el front y el back son de diferentes dominios
             maxAge: 7 * 24 * 60 * 60 * 1000, //7 dias
             path:'/'
-        })
+            })
         res.status(200).json({ message: 'Login successful', user: result });
     } catch (error) {
         console.error('Error in loginUser:', error);
@@ -69,4 +69,11 @@ const userDetails = async (req, res) =>{
         res.status(401).json({error:`token expired or invalid : ${err.message}`,});
     }
 }
-export { createUser, loginUser, refreshToken, userDetails };
+
+const clearCookies = (req, res) => {
+    res.clearCookie('refresh_token', { path: '/' });
+    res.clearCookie('access_token', { path: '/' });
+    res.status(200).json({ message: 'Cookies cleared' });
+}
+
+export { createUser, loginUser, refreshToken, userDetails, clearCookies };
