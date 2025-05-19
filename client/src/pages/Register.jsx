@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { createUser, loginUser, refreshToken } from "../api/users.jsx";
+import { createUser, loginUser, refreshToken, getUser } from "../api/users.jsx";
 import Footer from "../components/Footer.jsx";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -42,6 +42,7 @@ const Register = () => {
       await createUser(formData)
       await loginUser({ email: user.email, password: user.password })
       await refreshToken()
+      await getUser()
       navigate("/")
     } catch (error) {
       setError(error.message)

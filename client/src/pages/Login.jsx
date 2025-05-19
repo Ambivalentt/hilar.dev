@@ -76,7 +76,7 @@ const Login = () => {
             <li>Stay organized and productive</li>
           </ul>
         </section>
-        <section className="bg-zinc-900 border border-zinc-700 p-8 rounded-2xl shadow-2xl">
+        <section className={`bg-zinc-800 rounded-lg shadow-lg p-8 ${loading ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-3xl font-bold text-white mb-6 text-center">Sign in</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
