@@ -102,7 +102,7 @@ const Login = () => {
                 placeholder="••••••••"
               />
             </div>
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+            {error && <p className="text-red-500 font-semibold text-sm">{error}</p>}
             <button
               type="submit"
               className="w-full h-10 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md font-medium transition-colors"

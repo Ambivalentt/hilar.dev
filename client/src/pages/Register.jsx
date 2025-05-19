@@ -129,7 +129,7 @@ const Register = () => {
         <button type="button" onClick={handleClick} className={`${inputStyle} text-start overflow-hidden whitespace-nowrap`}>
           <p className="inline bg-indigo-600 py-1 px-5 rounded-lg cursor-pointer hover:bg-indigo-700">Upload Avatar</p> <span>{fileName}</span>
         </button>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-red-500 font-semibold text-sm">{error}</p>}
         <button type="submit" className="w-full h-10 flex items-center justify-center bg-indigo-600 cursor-pointer hover:bg-indigo-700 text-white py-2 rounded-md font-medium transition-colors">
           {loading ?  <PulseLoader  size={'10'} color="#fff" /> : "Register"}
         </button>

@@ -13,8 +13,7 @@ const createUser = async (req, res) => {
             image_url = await uploadToCloudinary(req.file.buffer);
         }
         const result = await User.create({ first_name, last_name, email, password, image_url });
-        console.log(result);
-        console.log(req.body)
+
         res.status(201).json({ message: 'User created successfully', user: result });
     } catch (error) {
         console.error('Error in createUser:', error);
