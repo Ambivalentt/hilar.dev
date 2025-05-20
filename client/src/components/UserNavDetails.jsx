@@ -1,11 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { User, Folder, CheckCircle, MessageSquareText, Activity, LogOut, } from "lucide-react";
+
+
+
 const UserNavDetails = ({ user, logOut }) => {
-    const { image_url } = user;
+    const { first_name, last_name, image_url } = user;
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-
+    const fullname = `${first_name} ${last_name}`;
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -51,23 +55,31 @@ const UserNavDetails = ({ user, logOut }) => {
                         />
 
                         {/* Acordeón / Dropdown */}
-                        <div
-                            className={`absolute right-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-lg border-1 border-white transition-all duration-300 overflow-hidden ${isOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
-                                }`}
+                        <div className={`absolute right-0 mt-2 w-70 bg-slate-800 rounded-lg shadow-lg transition-all duration-300 overflow-hidden ${isOpen ? "min-h-60 opacity-100" : "max-h-0 opacity-0"
+                            }`}
                         >
-                            <ul className="flex flex-col text-white divide-y  divide-gray-200 text-left font-semibold ">
-                                <li>
-                                    <button className="w-full px-4 py-3 cursor-pointer hover:bg-gray-100/20 text-right">
+                            <div className="flex items-center gap-3 p-4 border-b-2 border-gray-500">
+                                <img className="border-2 border-indigo-500 w-12 h-12 rounded-full" src={image_url} alt="" />
+                                <h2 className="text-lg font-semibold text-white text-center py-2">
+                                    {fullname}
+                                </h2>
+                            </div>
+                            <ul className="flex flex-col text-white py-4 divide-gray-200 font-semibold ">
+                                <li className="w-full flex gap-x-3 px-6 py-3 cursor-pointer hover:bg-gray-100/20 text-left">
+                                     <Folder />
+                                    <button className="">
                                         My Projects
                                     </button>
                                 </li>
-                                <li>
-                                    <button className="w-full px-4 py-3 cursor-pointer hover:bg-gray-100/20 text-right">
+                                <li className="w-full flex gap-x-3 px-6 py-3 cursor-pointer hover:bg-gray-100/20 text-left">
+                                    <User />
+                                    <button className="">
                                         My profile
                                     </button>
                                 </li>
-                                <li>
-                                    <button onClick={() => logOut()} className="w-full px-4 py-3 cursor-pointer text-right hover:bg-gray-100/20  text-red-500">
+                                <li className="w-full flex gap-x-3 px-6 py-3 cursor-pointer hover:bg-gray-100/20 text-left">
+                                    <LogOut />
+                                    <button onClick={() => logOut()} className="">
                                         Log out
                                     </button>
                                 </li>

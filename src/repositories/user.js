@@ -64,6 +64,7 @@ class UserRepository {
                 id: results[0].id,
                 first_name: results[0].first_name,
                 last_name: results[0].last_name,
+                created_at: results[0].created_at,
                 email: results[0].email,
                 role: results[0].role,
                 image_url: results[0].image_url

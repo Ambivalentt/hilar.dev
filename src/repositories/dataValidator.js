@@ -3,7 +3,6 @@ class DataValidator {
         if (typeof value !== "string") throw new Error(`${fileName} must be a string`);
         if (value.length < 3) throw new Error(`${fileName} must be at least 3 characters long`);
         if (value.trim() === "") throw new Error(`${fileName} cannot be empty`);
-        if (!/^[a-zA-Z]+$/.test(value)) throw new Error(`${fileName} must contain only letters`);
     }
     static email(value) {
         if (typeof value !== "string") throw new Error("Email must be a string");

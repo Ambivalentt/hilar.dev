@@ -5,13 +5,16 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true); 
 
     const getUser = async () => {
+          if (hasFetchedProjects) return;
         try {
             const response = await axiosInstance.get('/user/me', {
                 withCredentials: true
             });
             setUser(response.data);
+            
         } catch (error) {
             console.error('Error getting the user :', error);
         }
@@ -28,12 +31,15 @@ const AuthProvider = ({ children }) => {
         throw new Error(errorMessage);
     }
 }
+
+
     useEffect(() => {
         const checkAuth = async () => {
             try {
                 const response = await axiosInstance.get('/user/me', {
                     withCredentials: true
                 });
+                
                 setUser(response.data);
             } catch (error) {
                 // Si expiró, intenta refrescar y volver a obtener al usuario
@@ -54,6 +60,8 @@ const AuthProvider = ({ children }) => {
                 } else {
                     console.error('error getting the user data:', error);
                 }
+            } finally {
+                setLoading(false); // Set loading to false after the check
             }
         };
 

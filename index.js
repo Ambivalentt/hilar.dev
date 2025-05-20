@@ -5,7 +5,7 @@ dotenv.config();
 import userRoutes from './src/routes/users.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-
+import projectRoutes from './src/routes/projects.js';
 
 const app = express();
 
@@ -21,6 +21,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cookieParser());
 app.use(express.json());
 app.use('/user', userRoutes);
+app.use('/project', projectRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ message: 'Route not found'});
