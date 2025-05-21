@@ -12,8 +12,8 @@ const app = express();
 
 
 app.use(cors({
-    // origin:'https://hilar.dev',
-    origin:'http://localhost:5173',
+    origin:'https://hilar.dev',
+    // origin:'http://localhost:5173',
     credentials: true
 }));
 
