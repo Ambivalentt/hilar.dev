@@ -1,7 +1,7 @@
-import express from 'express';
-import database from './src/config/server.js';
 import dotenv from 'dotenv';
 dotenv.config();
+import express from 'express';
+import database from './src/config/server.js';
 import userRoutes from './src/routes/users.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
