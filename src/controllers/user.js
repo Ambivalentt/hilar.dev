@@ -86,4 +86,12 @@ const clearCookies = (req, res) => {
     res.status(200).json({ message: 'Logout successful' });
 }       
 
-export { createUser, loginUser, refreshToken, userDetails, clearCookies };
+const getAllRecentUsers = async (req, res) =>{
+    try{
+        const users = await User.getAllRecentUsers();
+        res.status(200).json({ message: 'Users retrieved successfully', users });
+    }catch (error){
+        res.status(400).json({ message: error.message });
+    }
+}
+export { createUser, loginUser, refreshToken, userDetails, clearCookies, getAllRecentUsers };

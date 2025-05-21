@@ -8,7 +8,6 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true); 
 
     const getUser = async () => {
-          if (hasFetchedProjects) return;
         try {
             const response = await axiosInstance.get('/user/me', {
                 withCredentials: true

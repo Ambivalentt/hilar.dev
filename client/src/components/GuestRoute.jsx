@@ -13,4 +13,14 @@ const GuestRoute = ({ children }) => {
   return children;
 }
 
-export default GuestRoute;
+const PrivateRoute = ({ children }) => {
+  const { user } = useStateContext();
+
+  if (!user) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
+}
+
+export {GuestRoute, PrivateRoute};

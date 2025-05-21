@@ -38,7 +38,7 @@ const UserNavDetails = ({ user, logOut }) => {
                 <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-3 sm:space-y-0 sm:space-x-6 w-full md:w-auto text-center md:text-left relative" ref={dropdownRef}>
                     <Link to={'/dashboard'}>
                         <button
-                            className="bg-indigo-600 font-semibold hover:bg-indigo-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-300"
+                            className="bg-indigo-600 cursor-pointer font-semibold hover:bg-indigo-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-300"
                             type="button"
                         >
                             My Dashboard
@@ -65,21 +65,21 @@ const UserNavDetails = ({ user, logOut }) => {
                                 </h2>
                             </div>
                             <ul className="flex flex-col text-white py-4 divide-gray-200 font-semibold ">
-                                <li className="w-full flex gap-x-3 px-6 py-3 cursor-pointer hover:bg-gray-100/20 text-left">
-                                     <Folder />
-                                    <button className="">
+                                <li className="w-full cursor-pointer hover:bg-gray-100/20 text-left">
+                                    <Link className="flex gap-x-3 px-6 py-3" to='/dashboard'>
+                                        <Folder />
                                         My Projects
-                                    </button>
+                                    </Link>
                                 </li>
-                                <li className="w-full flex gap-x-3 px-6 py-3 cursor-pointer hover:bg-gray-100/20 text-left">
-                                    <User />
-                                    <button className="">
-                                        My profile
-                                    </button>
+                                <li className="w-full  cursor-pointer hover:bg-gray-100/20 text-left">
+                                    <Link className="flex gap-x-3 px-6 py-3" to='/dashboard/user-details'>
+                                        <User />
+                                        My Profile
+                                    </Link>
                                 </li>
-                                <li className="w-full flex gap-x-3 px-6 py-3 cursor-pointer hover:bg-gray-100/20 text-left">
-                                    <LogOut />
-                                    <button onClick={() => logOut()} className="">
+                                <li className="w-full  cursor-pointer hover:bg-gray-100/20 text-left">
+                                    <button onClick={() => logOut()} className=" w-full cursor-pointer flex gap-x-3 px-6 py-3">
+                                        <LogOut />
                                         Log out
                                     </button>
                                 </li>

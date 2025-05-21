@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SettingsForm from './../components/userSetting/Form.jsx';
+import SettingsForm from '../components/dashboard/UserSttingsForm.jsx';
 
 const  SettingsPage = () => {
  

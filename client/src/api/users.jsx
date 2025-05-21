@@ -42,5 +42,13 @@ const refreshToken = async () => {
     }
 }
 
-
-export { createUser, loginUser, refreshToken };
+const getRecentUsers = async () => {
+    try{
+        const response = await axiosInstance.get('/user/getAllRecentUsers');
+        return response.data;
+    }catch(error){
+        const errorMessage = error?.response?.data || 'an problem occurred while fetching recent users';
+        throw new Error(errorMessage.message);
+    }
+}   
+export { createUser, loginUser, refreshToken, getRecentUsers };

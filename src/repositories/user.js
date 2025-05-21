@@ -74,6 +74,21 @@ class UserRepository {
             throw error
         }
     }
+
+    static async getAllRecentUsers() {
+        try {
+            const query = 'SELECT id, first_name, last_name, image_url FROM users ORDER BY created_at DESC LIMIT 5';
+            const [results] = await db.promise().query(query);
+
+            if (results.length === 0) {
+                throw new Error('No users found');
+            }
+          
+            return results;
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 

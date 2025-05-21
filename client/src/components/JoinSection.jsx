@@ -25,8 +25,8 @@ const JoinSection = () => {
                 <p className="whitespace-pre-wrap text-lg h-22 text-gray-300 mb-6 typewriter ">
                     {displayedText}
                 </p>
-                <Link to={"/register"}>
-                    <button className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-medium transition">
+                <Link  to={"/register"}>
+                    <button className="bg-indigo-600 cursor-pointer hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-medium transition">
                         Join us now
                     </button>
                 </Link>
