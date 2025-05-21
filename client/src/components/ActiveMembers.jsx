@@ -22,7 +22,7 @@ const ActiveMembers = () => {
             <h2 className="text-2xl font-bold mb-4">Latest Members</h2>
             <div className="flex space-x-4">
             
-                {latestMembers.map((member, i) => (
+                {latestMembers && latestMembers.map((member, i) => (
                     <div key={i} className="text-center">
                         <img
                             src={member.image_url}
