@@ -9,6 +9,13 @@ import projectRoutes from './src/routes/projects.js';
 
 const app = express();
 
+console.log('ENV VARS:', {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
 
 
 app.use(cors({
@@ -26,7 +33,6 @@ app.use('/project', projectRoutes);
 app.use((req, res) => {
     res.status(404).json({ message: 'Route not found'});
 });
-
 
 database.query('SELECT 1 + 1 AS solution', (error, results) => {
     if (error) {
