@@ -29,7 +29,7 @@ const ActiveMembers = () => {
                             alt={member.first_name}
                             className="w-16 h-16 rounded-full border-2 border-indigo-500 mx-auto"
                         />
-                        <p className="text-sm mt-2">{member.name}</p>
+                        <p className="text-sm mt-2">{member.first_name}</p>
                     </div>
                 ))}
             </div>
