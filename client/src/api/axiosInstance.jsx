@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'https://hilar-backend.onrender.com'
+    baseURL: 'hilar-dev.railway.internal'
     // baseURL: 'http://localhost:3000'
 });
 
