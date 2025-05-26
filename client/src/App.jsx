@@ -8,7 +8,8 @@ import {GuestRoute, PrivateRoute} from './components/GuestRoute.jsx'
 import UserSettingsForm from './components/dashboard/UserSttingsForm.jsx'
 import Projects from './pages/Projects.jsx'
 import AllUserDetails from './components/dashboard/AllUserDetails.jsx'
-
+import ProjectDetails from './pages/ProjectDetails.jsx'
+import NotFoundPage from './pages/404.jsx'
 const App = () => {
 
   return (
@@ -29,9 +30,9 @@ const App = () => {
         <Route index element={<Projects />} />
         <Route path="user-settings" element={<UserSettingsForm />} />
         <Route path="user-details" element={<AllUserDetails />} />
+        <Route path="project/:id" element={<ProjectDetails />} />
       </Route>
-
-
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }

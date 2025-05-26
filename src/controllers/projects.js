@@ -37,5 +37,49 @@ const deleteProject = async (req, res) => {
     }
 }
 
+const getProjectById = async (req, res) => {
+    try {
+        const projectId = req.params.id;
+        const user = req.user
+        if (!user) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        const project = await Projects.getProjectById({ project_id: projectId });
+        res.status(200).json({ message: 'Project retrieved successfully', project });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
 
-export { createProject, getAllProjectByUserId, deleteProject }; 
+const getMembersFromProject = async (req, res) =>{
+    try{
+        const projectId = req.params.id;
+        const user = req.user;
+        if (!user) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        const members = await Projects.getAllMembersByProjectId({ project_id: projectId });
+        res.status(200).json({ message: 'Members retrieved successfully', members });
+    }catch (error) {
+        console.error('Error in getMembersFromProject:', error);
+        res.status(400).json({ message: error.message });
+    }
+}
+
+const addMemberToProject = async (req, res) => {
+    try {
+        const { add_member } = req.body;
+        const user = req.user;
+        if (!user) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        const project_id = req.params.id;
+        const result = await Projects.addMember({ project_id, user_id: add_member });
+        res.status(200).json({ message: 'Member added successfully', result });
+    } catch (error) {
+        console.error('Error in addMemberToProject:', error);
+        res.status(400).json({ message: error.message });
+    }
+}
+
+export { createProject, getAllProjectByUserId, deleteProject, getProjectById, getMembersFromProject, addMemberToProject }; 

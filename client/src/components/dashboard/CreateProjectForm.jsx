@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { createProjectFn } from "../../api/project.jsx";
+import { set } from "date-fns";
 
-const CreateProjectForm = ({ getProjectsFn }) => {
+const CreateProjectForm = ({ getProjectsFn, setShowCreateProject }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const CreateProjectForm = ({ getProjectsFn }) => {
             setError(null);
             await createProjectFn(formData);
             await getProjectsFn();
-            setFormData({ title: "", description: "" });
+            setShowCreateProject(false);
         } catch (error) {
             setError(error.message || "Error al crear el proyecto.");
             console.error("Error creating the project:", error);

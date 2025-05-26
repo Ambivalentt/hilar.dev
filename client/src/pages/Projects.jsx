@@ -3,11 +3,13 @@ import { Folder, Plus } from "lucide-react";
 import { useProjectContext } from "../context/projectContext.jsx";
 import { useState, useEffect } from "react";
 import CreateProjectForm from "../components/dashboard/CreateProjectForm.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
     const [deletingId, setDeletingId] = useState(null);
     const { getProjectsByUser, getProjectsFn, deleteAndUpdateProjects } = useProjectContext();
     const [showCreateProject, setShowCreateProject] = useState(false);
+    
 
     useEffect(() => {
          getProjectsFn();
@@ -23,6 +25,10 @@ const Projects = () => {
         e.preventDefault();
         setShowCreateProject(prev => !prev);
     };
+    const navigate = useNavigate();
+    const onProjectSelect = (project) => {
+        navigate(`/dashboard/project/${project.project_id}`);
+    }
 
     return (
         <section className="ps-1">
@@ -36,7 +42,7 @@ const Projects = () => {
                 </button>
                 <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
                         showCreateProject ? "max-h-[1000px] opacity-100 scale-100 mt-6" : "max-h-0 opacity-0 scale-95"}`}>
-                    {showCreateProject && <CreateProjectForm getProjectsFn={getProjectsFn} />}
+                    {showCreateProject && <CreateProjectForm getProjectsFn={getProjectsFn} setShowCreateProject={setShowCreateProject} />}
                 </div>
             </header>
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
@@ -45,7 +51,7 @@ const Projects = () => {
             {getProjectsByUser.length === 0 && (
                 <p className="text-gray-400">No projects found. Create a new one!</p>
             )}
-            <ProjectList projects={getProjectsByUser} onDelete={handleDelete} deletingId={deletingId} />
+            <ProjectList onSelect={onProjectSelect} projects={getProjectsByUser} onDelete={handleDelete} deletingId={deletingId} /> 
         </section>
     );
 };
