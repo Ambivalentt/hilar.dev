@@ -47,7 +47,7 @@ const Login = () => {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-zinc-900 to-zinc-800 px-6 py-10 grid place-items-center">
+    <main className="min-h-screen bg-gradient-to-br flex justify-center flex-col items-center from-zinc-900 to-zinc-800  ">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
@@ -60,9 +60,9 @@ const Login = () => {
         />
       </svg>
 
-      <div className="relative z-10 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <main className="relative  md:max-w-xl lg:max-w-6xl flex-col-reverse flex-grow  gap-10 px-4 lg:gap-16 lg:px-10 w-full flex lg:flex-col justify-center  lg:grid lg:grid-cols-2 lg:place-items-center">
 
-        <section className="text-center md:text-left px-4">
+        <section className="text-center md:text-left ">
           <h1 className="text-4xl font-extrabold text-indigo-500 mb-6">
             Welcome Back!
           </h1>
@@ -76,7 +76,7 @@ const Login = () => {
             <li>Stay organized and productive</li>
           </ul>
         </section>
-        <section className={`bg-zinc-900 rounded-lg shadow-lg p-8 ${loading ? "opacity-50 pointer-events-none" : ""}`}>
+        <section className={`bg-zinc-900 w-full rounded-lg shadow-lg p-8 ${loading ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-3xl font-bold text-white mb-6 text-center">Sign in</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -118,9 +118,9 @@ const Login = () => {
             </a>
           </p>
         </section>
-      </div>
+      </main>
 
-      <footer className="fixed bottom-0 left-0 w-full bg-zinc-900 border-t border-zinc-700 py-4">
+      <footer className="w-full bg-zinc-900 border-t lg:fixed lg:bottom-0 border-zinc-700 py-4">
         <Footer />
       </footer>
     </main>

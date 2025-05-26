@@ -55,7 +55,7 @@ const UserNavDetails = ({ user, logOut }) => {
                         />
 
                         {/* Acordeón / Dropdown */}
-                        <div className={`absolute right-0 mt-2 w-70 bg-slate-800 rounded-lg shadow-lg transition-all duration-300 overflow-hidden ${isOpen ? "min-h-60 opacity-100" : "max-h-0 opacity-0"
+                        <div className={`absolute -right-30 md:right-0 mt-2 w-70 bg-slate-800 rounded-lg shadow-lg transition-all duration-300 overflow-hidden ${isOpen ? "min-h-60 opacity-100" : "max-h-0 opacity-0"
                             }`}
                         >
                             <div className="flex items-center gap-3 p-4 border-b-2 border-gray-500">
