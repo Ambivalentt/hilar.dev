@@ -4,13 +4,13 @@ const NavDefault = () => {
 
     return (
         <motion.div
-            className="flex space-x-4 mt-6 justify-center md:justify-start"
+            className="flex gap-x-4 items-center justify-center "
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
         >
             <Link to={'/login'}
-                className="bg-indigo-700 flex items-center cursor-pointer hover:bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition duration-300 ease-in-out"
+                className="bg-indigo-700  hover:bg-indigo-600 border-indigo-700 border-2 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition duration-300 ease-in-out"
             >
                 Login
             </Link>
