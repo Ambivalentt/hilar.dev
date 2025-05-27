@@ -10,11 +10,13 @@ import Projects from './pages/Projects.jsx'
 import AllUserDetails from './components/dashboard/AllUserDetails.jsx'
 import ProjectDetails from './pages/ProjectDetails.jsx'
 import NotFoundPage from './pages/404.jsx'
+import LandingPage from './pages/LandingPage.jsx'
 const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      {/* <Route path="/" element={<Home />} /> */}
+      <Route path="/" element={<LandingPage />} />
       <Route path="/register" element={
         <GuestRoute>
           <Register />

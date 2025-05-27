@@ -29,7 +29,7 @@ const Sidebar = () => {
     }`;
 
   return (
-    <aside ref={menuRef} className="lg:w-64 bg-gray-900 lg:border-r lg:border-white flex flex-col relative">
+    <aside ref={menuRef} className="lg:w-64  lg:border-r lg:border-white flex flex-col relative">
       {/* Mobile Header with Toggle */}
       <div className="flex justify-between items-center lg:hidden p-5 border-b border-white">
         <div className="text-white font-bold text-2xl">

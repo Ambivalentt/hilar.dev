@@ -7,8 +7,8 @@ import { Outlet } from "react-router-dom";
 const HomeDashboard = () => {
 
   return (
-    <section className="min-h-screen flex flex-col bg-slate-900">
-      <main className="bg-gray-900 min-h-max flex flex-col lg:flex-row flex-grow">
+    <section className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-950  via-black to-indigo-950">
+      <main className=" min-h-max flex flex-col lg:flex-row flex-grow">
         <Sidebar /> 
         <section className="flex-1 m-10">
           <Outlet />
@@ -16,7 +16,7 @@ const HomeDashboard = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 border-t border-white p-6">
+      <footer className=" border-t border-white p-6">
         <Footer />
       </footer>
     </section>
