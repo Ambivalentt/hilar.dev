@@ -31,7 +31,7 @@ export default function LandingPage() {
           )
         }
       </nav>
-      <main className="flex min-h-screen  gap-y-4 md:gap-y-20 justify-center items-center px-5 flex-col md:flex-row">
+      <main className="flex min-h-screen lg:pb-30 gap-y-4 md:gap-y-20 justify-center items-center px-5 flex-col md:flex-row">
         <BackgroundTextSide />
         <ImageShowcase />
         <main className="relative z-10 max-w-lg mt-10 md:mt-0 md:ml-12 text-center md:text-left">
