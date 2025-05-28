@@ -128,7 +128,7 @@ const Login = () => {
         </motion.section>
       </main>
 
-      <footer className="w-full bg-zinc-900 border-t lg:fixed lg:bottom-0 border-zinc-700 py-4">
+      <footer className="w-full  lg:fixed lg:bottom-0 border-zinc-700 py-4">
         <Footer />
       </footer>
     </main>

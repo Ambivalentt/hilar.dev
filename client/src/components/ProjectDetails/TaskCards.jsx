@@ -2,14 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { ClipboardList, Clock, User, Calendar, Trash2, MessageSquarePlus } from "lucide-react";
 
 
-const TaskCards = ({ task, handleDeleteTask, loadingTaskId }) => {
+const TaskCards = ({ task, handleDeleteTask, loadingTaskId, addNewCommentFn }) => {
     const [showCommentInput, setShowCommentInput] = useState(false);
     const [commentText, setCommentText] = useState("");
     const { task_id, task_title, task_due_date, task_status } = task;
 
     const handleSave = () => {
         if (!commentText.trim()) return;
-        onAddComment(task, commentText);
+        addNewCommentFn({task_id, content:commentText});
+        console.log("Comment added:", commentText, task_id);
         setCommentText("");
         setShowCommentInput(false);
     };
@@ -64,11 +65,10 @@ const TaskCards = ({ task, handleDeleteTask, loadingTaskId }) => {
                 </button>
             </div>
 
-            <div
-                className={`absolute left-0 bottom-[-140px] w-full z-20 transform transition-all duration-300 ease-in-out ${showCommentInput ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-                    }`}
-            >
-                <section className="bg-[#1F1F2E] border-l-4 border-indigo-500 rounded-lg shadow-md p-4">
+            <div className={`absolute left-0 bottom-[-140px] w-full z-20 transform transition-all duration-300 ease-in-out ${showCommentInput ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+                    }`}>
+                {/* add comment btn */}
+                <section className="bg-[#1F1F2E] border-2 border-indigo-500 rounded-lg shadow-md p-4">
                     <p className="mb-2 text-indigo-400 font-semibold">
                         Add comment to: <span className="text-white">{task_title}</span>
                     </p>
