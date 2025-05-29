@@ -53,13 +53,10 @@ const TaskCards = ({ task, handleDeleteTask, loadingTaskId, addNewCommentFn }) =
                         <MessageSquarePlus size={18} /> Comment
                     </button>
                 </div>
-                <button
-                    disabled={isDeleting}
+                <button disabled={isDeleting}
                     onClick={() => handleDeleteTask(task.task_id)}
-                    className={`text-red-500 hover:text-red-700 transition flex items-center gap-1 ${isDeleting ? "opacity-50 cursor-not-allowed" : ""
-                        }`}
-                    title="Delete task"
-                >
+                    className={`text-red-500 cursor-pointer hover:text-red-700 transition flex items-center gap-1 ${isDeleting ? "opacity-50 cursor-not-allowed" : ""}`} 
+                    title="Delete task">
                     <Trash2 size={18} />
                     {isDeleting ? "Deleting..." : "Delete"}
                 </button>
@@ -84,14 +81,10 @@ const TaskCards = ({ task, handleDeleteTask, loadingTaskId, addNewCommentFn }) =
                                 setShowCommentInput(false);
                                 setCommentText("");
                             }}
-                            className="px-4 py-2 rounded-md bg-gray-600 hover:bg-gray-700 transition text-white"
-                        >
+                            className="px-4 py-2 rounded-md bg-gray-600 hover:bg-gray-700 transition text-white">
                             Cancel
                         </button>
-                        <button
-                            onClick={handleSave}
-                            className="px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-700 transition text-white"
-                        >
+                        <button onClick={handleSave} className="px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-700 transition text-white">
                             Save
                         </button>
                     </div>

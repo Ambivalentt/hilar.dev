@@ -8,6 +8,7 @@ import ActivityLog from '../components/ProjectDetails/ActivityLog.jsx';
 import { getProjectByIdFn, getTasksByProjectIdFn, getMembersFromProjectFn } from '../api/project.jsx';
 import { deleteTask, addNewTaskProjectfn } from '../api/tasks.jsx';
 import { getAllCommentsByProjectIdFn, createComment, deleteComment } from '../api/comments.jsx';
+import { getRecentActivity } from '../api/recentActivity.jsx'; // Assuming you have an API function to get recent activity
 import { add, set } from 'date-fns';
 
 
@@ -21,6 +22,7 @@ const ProjectDetails = () => {
     const [loadingTaskId, setLoadingTaskId] = useState(false); //loading state while deleting a task
     const [comments, setComments] = useState([]); //comments for the tasks
     const [loadingComments, setLoadingComments] = useState(false); //loading state for comments
+    const [recentActivity, setRecentActivity] = useState([]); //recent activity of the project
     useEffect(() => {
         const fetchProject = async () => {
             try {
@@ -28,10 +30,12 @@ const ProjectDetails = () => {
                 const tasksData = await getTasksByProjectIdFn(id);
                 const membersData = await getMembersFromProjectFn(id);
                 const AllComments = await getAllCommentsByProjectIdFn(id);
+                const activityData = await getRecentActivity(id); // Fetch recent activity data
                 setProject(projectData);
                 setTasksOfProject(tasksData);
                 setAllMembers(membersData);
                 setComments(AllComments);
+                setRecentActivity(activityData); // Set the recent activity data
 
             } catch (error) {
                 console.error("Error fetching project details:", error);
@@ -81,7 +85,7 @@ const ProjectDetails = () => {
             console.error("Error deleting comment:", error);
             // If there's an error, revert the comments to the previous state
             setComments(prevComments);
-        }finally{
+        } finally {
             setLoadingComments(false);
         }
     }
@@ -105,19 +109,7 @@ const ProjectDetails = () => {
         }
     }
 
-    const activityData = [
-        {
-            id: 1,
-            description: "Andrés creó la tarea 'Diseñar interfaz móvil'",
-            date: "2025-05-20 09:00",
-        },
-        {
-            id: 2,
-            description:
-                "María añadió un comentario en la tarea 'Configurar base de datos'",
-            date: "2025-05-19 18:45",
-        },
-    ];
+
 
     if (loading) {
         return (
@@ -153,8 +145,8 @@ const ProjectDetails = () => {
                     </div>
                 )}
             </div>
-            <Comments comments={comments} handleDeleteComment={handleDeleteComment}/>
-            <ActivityLog activities={activityData} />
+            <Comments comments={comments} handleDeleteComment={handleDeleteComment} />
+            <ActivityLog activities={recentActivity} />
         </main>
     )
 }

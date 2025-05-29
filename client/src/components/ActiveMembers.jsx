@@ -38,7 +38,7 @@ const ActiveMembers = () => {
                 {latestMembers.map((member, i) => (
                     <div key={i} className="text-center">
                         <img
-                            src={member.image_url}
+                            src={member.image_url || "https://res.cloudinary.com/stackover/image/upload/v1748493790/defaultUser_a0mokq.jpg"}
                             alt={member.first_name}
                             className="w-13 h-13 rounded-full border-2 border-indigo-500 mx-auto"
                         />

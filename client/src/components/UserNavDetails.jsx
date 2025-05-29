@@ -39,7 +39,7 @@ const UserNavDetails = ({ user, logOut }) => {
                 {/* Avatar */}
                 <section className="relative">
                     <img
-                        src={image_url}
+                        src={image_url || 'https://res.cloudinary.com/stackover/image/upload/v1748493790/defaultUser_a0mokq.jpg'}
                         alt="User Avatar"
                         onClick={() => setIsOpen(prev => !prev)}
                         className="border-2 border-indigo-500 w-14 h-14 rounded-full cursor-pointer"
@@ -50,7 +50,7 @@ const UserNavDetails = ({ user, logOut }) => {
                         }`}
                     >
                         <div className="flex items-center gap-3 p-4 border-b-2 border-gray-500">
-                            <img className="border-2 border-indigo-500 w-12 h-12 rounded-full" src={image_url} alt="" />
+                            <img className="border-2 border-indigo-500 w-12 h-12 rounded-full" src={image_url || 'https://res.cloudinary.com/stackover/image/upload/v1748493790/defaultUser_a0mokq.jpg'} alt="" />
                             <h2 className="text-lg font-semibold text-white text-center py-2">
                                 {fullname}
                             </h2>

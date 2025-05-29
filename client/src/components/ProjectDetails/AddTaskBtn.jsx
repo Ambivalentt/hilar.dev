@@ -9,7 +9,6 @@ const AddTaskBtn = ({ setAllmembers, handleAddNewTask, loadingTasks }) => {
         due_date: "",
         assigned_to: ""
     });
-    console.log("All members:", newTask);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 

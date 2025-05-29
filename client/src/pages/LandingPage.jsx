@@ -22,7 +22,7 @@ export default function LandingPage() {
   }
   return (
     <main className="relative min-h-screen h-full  bg-gradient-to-br from-indigo-950  via-black to-indigo-950  text-white ">
-      <nav className="w-full flex justify-end absolute md:pe-10 md:pt-10 pt-10">
+      <nav className="w-full z-50 flex justify-end absolute md:pe-10 md:pt-10 pt-10">
         {
           user === null ? (
             <NavDefault />
@@ -31,15 +31,13 @@ export default function LandingPage() {
           )
         }
       </nav>
-      <main className="flex min-h-screen lg:pb-30 gap-y-4 md:gap-y-20 justify-center items-center px-5 flex-col md:flex-row">
-        <BackgroundTextSide />
+      <BackgroundTextSide />
+      <main className="min-h-screen px-2 lg:px:0 lg:gap-y-0 gap-y-15 flex-col pt-20 lg:pt-0 pb-30 lg:flex-row gap-x-14 flex justify-center items-center mx-auto max-w-[94rem] z-10 md:mt-0 text-center md:text-left">
         <ImageShowcase />
-        <main className="relative z-10 max-w-lg mt-10 md:mt-0 md:ml-12 text-center md:text-left">
-          <RightSectionTxt user={user} />
-        </main>
+        <RightSectionTxt user={user} />
       </main>
       <footer className="lg:absolute bottom-4 left-10 p-5">
-        <ActiveMembers  />
+        <ActiveMembers />
       </footer>
     </main>
   );

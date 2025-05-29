@@ -11,11 +11,12 @@ class Comment {
             Validator.number(project_id, 'project_id');
             Validator.str(content, 'content');
             
-            const validateTaskQuery = 'SELECT id FROM tasks WHERE id = ? AND project_id = ?';
+            const validateTaskQuery = 'SELECT id, title FROM tasks WHERE id = ? AND project_id = ?';
             const [taskResults] = await connection.query(validateTaskQuery, [task_id, project_id]);
             if (taskResults.length === 0) {
                 throw new Error('Task not found in the specified project');
             }
+            const taskTitle = taskResults[0].title;
             //INSERT NEW COMMENT TO DB
             const query = `INSERT INTO comments (task_id, user_id, content) VALUES (?,?,?)`;
             const [resultInsertNewComment] = await connection.query(query, [task_id, user_id, content]);
@@ -25,7 +26,7 @@ class Comment {
             }
             //INSERT ACTIVITY LOG FOR COMMENT
             const queryActivityLogs = `INSERT INTO activity_logs (project_id, task_id, user_id, action) VALUES (?, ?, ?, ?)`;
-            const [resultActivityLogs] = await connection.query(queryActivityLogs, [project_id, task_id, user_id, 'commented']);
+            const [resultActivityLogs] = await connection.query(queryActivityLogs, [project_id, task_id, user_id, `Post a new comment to task: ${taskTitle} `]);
             if (resultActivityLogs.affectedRows === 0) {
                 throw new Error('Error creating activity log for comment');
             }
@@ -109,7 +110,7 @@ class Comment {
 
             //INSERT ACTIVITY LOG FOR DELETED COMMENT
             const queryActivityLogs = `INSERT INTO activity_logs (project_id, task_id, user_id, action) VALUES (?, ?, ?, ?)`;
-            const [resultActivityLogs] = await connection.query(queryActivityLogs, [null, null, user_id, 'deleted comment']);
+            const [resultActivityLogs] = await connection.query(queryActivityLogs, [null, null, user_id, 'A comment was deleted']);
             if (resultActivityLogs.affectedRows === 0) {
                 throw new Error('Error creating activity log for deleted comment');
             }

@@ -33,7 +33,7 @@ class Task {
                 INSERT INTO activity_logs (project_id, task_id, user_id, action)
                 VALUES (?, ?, ?, ?)
             `;
-            const [resultsActivityLogs] = await connection.query(queryActivityLogs, [project_id, taskId, user_id, 'created']);
+            const [resultsActivityLogs] = await connection.query(queryActivityLogs, [project_id, taskId, user_id, `has created a new task: '${title}'`]);
 
             if (resultsActivityLogs.affectedRows === 0) {
                 throw new Error('Error creating activity log');
@@ -101,7 +101,8 @@ class Task {
                 SELECT p.id AS project_id,
                 p.title AS project_title,
                 u.first_name AS user_first_name,
-                u.last_name AS user_last_name
+                u.last_name AS user_last_name,
+                t.title AS task_title
                 FROM tasks t
                 JOIN projects p ON t.project_id = p.id
                 JOIN users u ON u.id = ? WHERE t.id = ? 
@@ -110,14 +111,14 @@ class Task {
             if (results.length === 0) {
                 throw new Error('Error getting task information');
             }
-
+            const taskTitle = results[0].task_title;
             ////
             // Insert into activity logs
             const queryActivityLogs = `
                 INSERT INTO activity_logs (project_id, task_id, user_id, action)
                 VALUES (?, ?, ?, ?)
             `;
-            const [resultsActivityLogs] = await connection.query(queryActivityLogs, [null, task_id, user_id, `deleted`]);
+            const [resultsActivityLogs] = await connection.query(queryActivityLogs, [null, task_id, user_id, `deleted task: ${taskTitle}`]);
 
             if (resultsActivityLogs.affectedRows === 0) {
                 throw new Error('Error creating activity log');

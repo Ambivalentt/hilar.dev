@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import projectRoutes from './src/routes/projects.js';
 import tasksRoute from './src/routes/tasks.js';
 import comment from './src/routes/comments.js';
+import recentActivity from './src/routes/activity.js';
 const app = express();
 
 
@@ -25,6 +26,7 @@ app.use('/user', userRoutes);
 app.use('/project', projectRoutes);
 app.use('/tasks', tasksRoute);
 app.use('/comments', comment);
+app.use('/activity', recentActivity);
 app.use((req, res) => {
     res.status(404).json({ message: 'Route not found'});
 });

@@ -22,7 +22,7 @@ class Project {
 
             //insert into activity logs
             const queryActivity_logs = 'INSERT INTO activity_logs (project_id, task_id, user_id, action) VALUES (?, ?, ?, ?)';
-            const [resultsActivityLogs] = await connection.query(queryActivity_logs, [projectId, null, creator_id, 'created']);
+            const [resultsActivityLogs] = await connection.query(queryActivity_logs, [projectId, null, creator_id, 'Started a new project']);
 
             if (resultsActivityLogs.affectedRows === 0) {
                 throw new Error('Error creating activity log');

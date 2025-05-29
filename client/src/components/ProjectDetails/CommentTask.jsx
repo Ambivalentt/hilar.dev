@@ -1,7 +1,6 @@
 import { Trash2 } from "lucide-react";
 
 const CommentsSection = ({ comments, handleDeleteComment }) => {
-  console.log("CommentsSection rendered with comments:", comments);
   const formatDate = (dateString) => {
     const options = {
       year: "numeric",
