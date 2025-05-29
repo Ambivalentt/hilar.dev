@@ -10,16 +10,17 @@ const AddTaskBtn = ({ setAllmembers, handleAddNewTask, loadingTasks }) => {
         assigned_to: ""
     });
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [error, setError] = useState(null);
+    console.log(error)
     const dropdownRef = useRef(null);
 
     // Cerrar dropdown si se hace click fuera
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target)
-            ) {
+            if (dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)) {
                 setDropdownOpen(false);
+                setError(null); 
             }
         };
         if (dropdownOpen) {
@@ -46,8 +47,8 @@ const AddTaskBtn = ({ setAllmembers, handleAddNewTask, loadingTasks }) => {
 
     const handleAddTask = async (e) => {
         e.preventDefault();
-        if (!newTask.title || !newTask.description || !newTask.due_date) {
-            alert("Por favor completa todos los campos antes de agregar la tarea.");
+        if (!newTask.title || !newTask.description || !newTask.due_date || !newTask.assigned_to) {
+            setError("All fields are required");
             return;
         }
 
@@ -129,7 +130,7 @@ const AddTaskBtn = ({ setAllmembers, handleAddNewTask, loadingTasks }) => {
                             >
                                 {loadingTasks ? "Loading..." : "New task"}
                             </button>
-
+                            {error && <p className="text-red-500 mt-2">{error}</p>}
                         </form>
                     </div>
                 </div>
