@@ -7,6 +7,8 @@ import AddTaskBtn from '../components/ProjectDetails/AddTaskBtn.jsx';
 import ActivityLog from '../components/ProjectDetails/ActivityLog.jsx';
 import { getProjectByIdFn, getTasksByProjectIdFn, getMembersFromProjectFn } from '../api/project.jsx';
 import { deleteTask, addNewTaskProjectfn } from '../api/tasks.jsx';
+import { getAllCommentsByProjectIdFn, createComment, deleteComment } from '../api/comments.jsx';
+import { getRecentActivity } from '../api/recentActivity.jsx'; // Assuming you have an API function to get recent activity
 import { add, set } from 'date-fns';
 
 
@@ -18,22 +20,35 @@ const ProjectDetails = () => {
     const [loadingTasks, setLoadingTasks] = useState(false); //loading tasks state
     const [allMembers, setAllMembers] = useState(null); //members of the project
     const [loadingTaskId, setLoadingTaskId] = useState(false); //loading state while deleting a task
+    const [comments, setComments] = useState([]); //comments for the tasks
+    const [loadingComments, setLoadingComments] = useState(false); //loading state for comments
+    const [recentActivity, setRecentActivity] = useState([]); //recent activity of the project
     useEffect(() => {
         const fetchProject = async () => {
-            const projectData = await getProjectByIdFn(id);
-            const tasksData = await getTasksByProjectIdFn(id);
-            const membersData = await getMembersFromProjectFn(id);
-            setProject(projectData);
-            setTasksOfProject(tasksData);
-            setAllMembers(membersData);
-            setLoading(false);
+            try {
+                const projectData = await getProjectByIdFn(id);
+                const tasksData = await getTasksByProjectIdFn(id);
+                const membersData = await getMembersFromProjectFn(id);
+                const AllComments = await getAllCommentsByProjectIdFn(id);
+                const activityData = await getRecentActivity(id); // Fetch recent activity data
+                setProject(projectData);
+                setTasksOfProject(tasksData);
+                setAllMembers(membersData);
+                setComments(AllComments);
+                setRecentActivity(activityData); // Set the recent activity data
+
+            } catch (error) {
+                console.error("Error fetching project details:", error);
+            } finally {
+                setLoading(false);
+            }
+
         };
         fetchProject();
     }, [id]);
 
 
     const handleAddNewTask = async (taskData) => {
-        console.log("Adding new task:", taskData);
         try {
             setLoadingTasks(true);
             await addNewTaskProjectfn(id, taskData);
@@ -43,12 +58,12 @@ const ProjectDetails = () => {
         } catch (error) {
             console.error("Error adding new task:", error);
         } finally {
-           setLoadingTasks(false);
+            setLoadingTasks(false);
         }
     }
 
     const handleDeleteTask = async (taskId) => {
-          setLoadingTaskId(taskId);
+        setLoadingTaskId(taskId);
         try {
             await deleteTask({ task_id: taskId });
             const updatedTasks = tasksOfProject.filter(task => task.task_id !== taskId);
@@ -60,31 +75,41 @@ const ProjectDetails = () => {
         }
     }
 
-    const [comments, setComments] = useState([
-        {
-            id: 1,
-            user: "Luis",
-            content: "Muy buena idea, esto ayudará mucho a la experiencia móvil.",
-            date: "2025-05-20T12:15:00.000Z",
-            taskTitle: "Diseñar interfaz móvil",
-        },
-    ]);
+    const handleDeleteComment = async (commentId) => {
+        const prevComments = [...comments]
+        try {
+            setLoadingComments(true);
+            setComments(prevComments.filter(comment => comment.comment_id !== commentId));
+            await deleteComment(commentId);
+        } catch (error) {
+            console.error("Error deleting comment:", error);
+            // If there's an error, revert the comments to the previous state
+            setComments(prevComments);
+        } finally {
+            setLoadingComments(false);
+        }
+    }
+
+    const addNewCommentFn = async ({ task_id, content }) => {
+        try {
+            setLoadingComments(true);
+            const commentData = {
+                project_id: Number(id),
+                task_id,
+                content,
+            }
+
+            await createComment(commentData);
+            const updatedComments = await getAllCommentsByProjectIdFn(id);
+            setComments(updatedComments);
+        } catch (error) {
+            console.error("Error adding new comment:", error);
+        } finally {
+            setLoadingComments(false);
+        }
+    }
 
 
-
-    const activityData = [
-        {
-            id: 1,
-            description: "Andrés creó la tarea 'Diseñar interfaz móvil'",
-            date: "2025-05-20 09:00",
-        },
-        {
-            id: 2,
-            description:
-                "María añadió un comentario en la tarea 'Configurar base de datos'",
-            date: "2025-05-19 18:45",
-        },
-    ];
 
     if (loading) {
         return (
@@ -102,25 +127,26 @@ const ProjectDetails = () => {
             <Details project={project} />
             <AddTaskBtn setAllmembers={allMembers} handleAddNewTask={handleAddNewTask} loadingTasks={loadingTasks} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {tasksOfProject.length > 0 ? (
-                 <>
-                   {tasksOfProject.map((task) => (
-                    <TaskCards
-                        key={task.task_id}
-                        task={task}
-                        handleDeleteTask={handleDeleteTask}
-                        loadingTaskId={loadingTaskId}
-                    />
-                ))}
-                 </>
-              ):( 
-                <div className="col-span-1 md:col-span-2 text-center text-gray-500">
-                    <p>No tasks found, add a new one!</p>
-                </div>
-              )}
+                {tasksOfProject.length > 0 ? (
+                    <>
+                        {tasksOfProject.map((task) => (
+                            <TaskCards
+                                key={task.task_id}
+                                task={task}
+                                handleDeleteTask={handleDeleteTask}
+                                loadingTaskId={loadingTaskId}
+                                addNewCommentFn={addNewCommentFn}
+                            />
+                        ))}
+                    </>
+                ) : (
+                    <div className="col-span-1 md:col-span-2 text-center text-gray-500">
+                        <p>No tasks found, add a new one!</p>
+                    </div>
+                )}
             </div>
-            <Comments comments={comments} />
-            <ActivityLog activities={activityData} />
+            <Comments comments={comments} handleDeleteComment={handleDeleteComment} />
+            <ActivityLog activities={recentActivity} />
         </main>
     )
 }

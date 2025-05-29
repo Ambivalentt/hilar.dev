@@ -21,7 +21,7 @@ const BackgroundTextSide = () => {
   return (
     <>
       {/* Top-left */}
-      <div className="absolute top-8 left-6 md:left-12 max-w-xs space-y-6 z-20 select-none pointer-events-none">
+      <div className="absolute opacity-20 sm:opacity-100 top-8 left-6 md:left-12 max-w-xs space-y-6 z-20 select-none pointer-events-none">
         {texts.map((text, i) => (
           <motion.h2
             key={`top-${i}`}

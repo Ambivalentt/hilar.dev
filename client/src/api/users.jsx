@@ -7,7 +7,6 @@ const createUser = async (formData) => {
                 'Content-Type': 'multipart/form-data'
             }
         })
-
         return response.data;
 
     } catch (error) {
@@ -22,7 +21,6 @@ const loginUser = async (formData) => {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true
         });
-        console.log('response from loginUser', response);
         return response.data;
     } catch (error) {
         const errorMessage = error?.response?.data || ' an problem occurred while logging in';

@@ -5,7 +5,7 @@ const Tasks = ({ tasks }) => {
         switch (status) {
             case "Completed":
                 return "bg-green-600 text-green-100";
-            case "In Progress":
+            case "In_Progress":
                 return "bg-cyan-600 text-cyan-100";
             default:
                 return "bg-gray-600 text-gray-300";
@@ -32,9 +32,7 @@ const Tasks = ({ tasks }) => {
                                 <td className="px-6 py-3 text-gray-300">{task.title}</td>
                                 <td className="px-6 py-3 text-gray-300">{task.assignedTo}</td>
                                 <td className="px-6 py-3">
-                                    <span
-                                        className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(task.status)}`}
-                                    >
+                                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(task.status)}`}>
                                         {task.status}
                                     </span>
                                 </td>

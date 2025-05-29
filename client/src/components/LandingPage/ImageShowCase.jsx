@@ -20,7 +20,7 @@ const ImageShowcase = ()  =>{
   }, []);
 
   return (
-    <section className="relative w-full md:w-2/3 max-w-4xl h-64 sm:h-80 md:h-[400px] mt-16 overflow-hidden transform md:-skew-y-6 rounded-3xl shadow-2xl">
+    <section className=" relative w-full min-h-80 z-30 xl:max-w-[856px] md:max-w-xl sm:h-80 md:h-[400px] mt-16 overflow-hidden transform -skew-y-6 rounded-3xl shadow-2xl">
       {/* Fondo negro en el fondo */}
       <div className="absolute inset-0 bg-black -z-10" />
 
@@ -30,7 +30,7 @@ const ImageShowcase = ()  =>{
           key={i}
           src={img}
           alt={`project-${i}`}
-          className="absolute inset-0 z-10 w-full h-full object-cover"
+          className="absolute inset-0 z-40 w-full h-full object-cover"
           animate={{ opacity: i === index ? 1 : 0 }}
           initial={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}

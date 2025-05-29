@@ -9,7 +9,6 @@ const AddTaskBtn = ({ setAllmembers, handleAddNewTask, loadingTasks }) => {
         due_date: "",
         assigned_to: ""
     });
-    console.log("All members:", newTask);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -139,8 +138,7 @@ const AddTaskBtn = ({ setAllmembers, handleAddNewTask, loadingTasks }) => {
                 <button
                     onClick={addMember}
                     className="bg-indigo-700 hover:bg-indigo-800 cursor-pointer px-5 py-3 rounded-lg text-white font-semibold transition flex items-center gap-2"
-                    title="Añadir miembro"
-                >
+                    title="Añadir miembro">
                     <UserPlus size={20} /> Add new member
                 </button>
             </section>

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 const RightSectionTxt = ({user}) => {
     return (
-        <>
+        <section className="xl:max-w-[32rem] max-w-[20rem] lg:max-w-[20rem] sm:max-w-md ">
             <motion.h1
                 initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -33,7 +33,7 @@ const RightSectionTxt = ({user}) => {
             >
                 {user ? <Link to='/dashboard'>Go to Dashboard</Link> : <Link to='/login'>Get Started</Link>}
             </motion.button>
-        </>
+        </section>
     )
 }
 
