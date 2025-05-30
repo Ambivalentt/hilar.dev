@@ -32,7 +32,11 @@ const ProjectList = ({ onSelect, projects, onDelete, deletingId }) => {
                                     <p className="mt-2 text-gray-300">{project.description}</p>
                                 </div>
                                 <button
-                                    onClick={() => onDelete(project.project_id)}
+                                    onClick={(e) =>{
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                         onDelete(project.project_id)
+                                    }}
                                     disabled={deletingId === project.project_id}
                                     className={`rounded-full absolute cursor-pointer right-0 top-0 p-1 transition-transform duration-200
                   ${deletingId === project.project_id ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}`}
