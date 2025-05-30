@@ -49,9 +49,7 @@ const Login = () => {
 
   return (
     <main className="min-h-screen  flex justify-center flex-col items-center  bg-gradient-to-br from-indigo-950  via-black to-indigo-950 ">
-
-
-      <main className="relative  md:max-w-xl lg:max-w-6xl flex-col-reverse flex-grow  gap-10 px-4 lg:gap-16 lg:px-10 w-full flex lg:flex-col justify-center  lg:grid lg:grid-cols-2 lg:place-items-center">
+      <main className="relative lg:mb-22 pt-10 lg:pt-0 md:max-w-xl lg:max-w-6xl flex-col-reverse flex-grow  gap-10 px-4 lg:gap-16 lg:px-10 w-full flex lg:flex-col justify-center  lg:grid lg:grid-cols-2 lg:place-items-center">
         <motion.section
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
