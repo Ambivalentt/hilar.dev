@@ -32,11 +32,11 @@ export default function LandingPage() {
         }
       </nav>
       <BackgroundTextSide />
-      <main className="min-h-screen px-2 lg:px:0 lg:gap-y-0 gap-y-15 flex-col pt-20 lg:pt-0 pb-30 lg:flex-row gap-x-14 flex justify-center items-center mx-auto max-w-[94rem] z-10 md:mt-0 text-center md:text-left">
+      <main className="min-h-screen px-2 lg:px:0 lg:gap-y-0 gap-y-15 flex-col pt-30 lg:pt-20 pb-30 lg:flex-row gap-x-14 flex justify-center items-center mx-auto max-w-[94rem] z-10 md:mt-0 text-center md:text-left">
         <ImageShowcase />
         <RightSectionTxt user={user} />
       </main>
-      <footer className="lg:absolute bottom-4 left-10 p-5">
+      <footer className="lg:absolute  bottom-4 left-10 p-5">
         <ActiveMembers />
       </footer>
     </main>

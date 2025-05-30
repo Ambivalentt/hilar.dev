@@ -75,9 +75,9 @@ const Register = () => {
 
   const inputStyle = "w-full px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex flex-col"
   return (
-    <section className="min-h-screen bg-gradient-to-br from-indigo-950  via-black to-indigo-950 flex flex-col justify-center ">
+    <section className="min-h-screen  bg-gradient-to-br from-indigo-950  via-black to-indigo-950 flex flex-col justify-center ">
 
-      <main className="max-w-6xl mx-auto px-4 lg:my-2 md:gap-y-20 py-8 w-full my-20 flex flex-grow flex-col-reverse md:flex-col  md:mt-40  lg:grid lg:grid-cols-2 items-center gap-10 z-20">
+      <main className="max-w-6xl  justify-center mx-auto lg:px-10 lg:my-2 md:gap-y-20 py-8 w-full  flex flex-grow flex-col-reverse md:flex-col  md:mt-10  lg:grid lg:grid-cols-2 items-center gap-10 z-20">
         {/* Left Text Content */}
         <motion.section
           initial={{ opacity: 0, x: -50 }}
@@ -85,7 +85,7 @@ const Register = () => {
           transition={{ duration: 0.8 }}
           className="text-zinc-300 px-2 lg:px-0"
         >
-          <section className="text-zinc-300 px-2 lg:px-0">
+          <section className="text-zinc-300 px-2 mx-auto lg:px-0 max">
             <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-indigo-500">
               Welcome to Our Community!
             </h1>
@@ -109,7 +109,7 @@ const Register = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           >
-          <section className={`bg-zinc-900 relative border border-zinc-700 rounded-2xl shadow-2xl w-full max-w-md mx-auto px-5 pb-7 pt-18 ${loading ? "opacity-90 pointer-events-none" : ""}`}>
+          <section className={`bg-zinc-900 xl:max-w-1xl relative border border-zinc-700 rounded-2xl shadow-2xl w-[310px] sm:w-sm md:w-xl max-w-lg mx-auto px-5 pb-7 pt-18 ${loading ? "opacity-90 pointer-events-none" : ""}`}>
              <Link
               to="/"
               className="inline-flex items-center absolute top-4 left-2 hover:bg-zinc-700 text-white/90 px-3 py-1.5 rounded-md transition-colors text-sm font-medium"
